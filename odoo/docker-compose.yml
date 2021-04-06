@@ -1,0 +1,31 @@
+version: '3'
+services:
+  odoo14-web:
+    container_name: odoo14
+    image: odoo14:14.2021.3
+    depends_on:
+      - db2
+    ports:
+      - "8080:8080"
+    volumes:
+      - odoo14-app-web-data:/var/lib/odoo
+      - ./config:/etc/odoo
+      - /home/eradar/projects/odoo_addons:/mnt/extra-addons
+    environment:
+      - HOST=db2
+      - LANG=es_MX.UTF-8
+    restart: always
+  db2:
+    container_name: odoo14_db
+    image: postgres:10
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - odoo14-app-db-data:/var/lib/postgresql/data/pgdata
+    restart: always
+volumes:
+  odoo14-app-web-data:
+  odoo14-app-db-data:

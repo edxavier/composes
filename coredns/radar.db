@@ -1,0 +1,49 @@
+cns.io.        IN  SOA cns.io. edxavier.cns.io. 2015082542 7200 3600 1209600 3600
+
+@    IN  NS   cns.io.
+@    IN  A   10.160.80.220
+server      IN  A   10.160.80.220
+app     IN  CNAME   server
+
+mail    IN A 10.160.80.220
+smtp    IN A 10.160.80.220
+
+@      IN  MX 10  mail
+
+pbx    IN  A 10.160.80.221
+
+
+fdp1    IN  A   10.160.80.1
+fdp2    IN  A   10.160.80.2
+
+cmd1    IN  A   10.160.80.11
+cmd2    IN  A   10.160.80.25
+
+sdd1    IN  A   10.160.80.13
+sdd2    IN  A   10.160.80.24
+sdd3    IN  A   10.160.80.14
+sdd4    IN  A   10.160.80.17
+sdd5    IN  A   10.160.80.15
+sdd6    IN  A   10.160.80.18
+sdd7    IN  A   10.160.80.12
+sdd8    IN  A   10.160.80.19
+sdd9    IN  A   10.160.80.21
+sdd10   IN  A   10.160.80.23
+sdd11   IN  A   10.160.80.26
+sdd12   IN  A   10.160.80.27
+
+dbm     IN  A   10.160.80.22
+
+fdd1    IN  A   10.160.80.16
+fdd2    IN  A   10.160.80.20
+
+drf1    IN  A   10.160.80.9
+drf2    IN  A   10.160.80.10
+
+rdcu1    IN  A   10.160.80.5
+rdcu2    IN  A   10.160.80.6
+
+rdp1    IN  A   10.160.80.3
+rdp2    IN  A   10.160.80.4
+
+
