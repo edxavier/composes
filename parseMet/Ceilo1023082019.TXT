@@ -1,0 +1,192 @@
+system
+
+Vaisala Ceilometer CL31
+
+ Unit ID:    0
+ Serial Nro: 94420003        
+ SW Version: 1.711   
+
+ HW Options
+  Modem:     N/A     
+  Humitter:  N/A      
+
+
+CEILO >  status
+
+00 ///// ///// ///// 00000000C080
+
+Alarms
+ Tmit Shutoff OK    Transmitter   OK  
+ Receiver     OK    Voltages      OK  
+ Ext Memory   OK    Light Pth Obs OK  
+ Rec Saturat  OK    Coaxial Cable OK  
+ Engine       OK    
+
+Oper Mode:  normal   Autoadj:   on 
+Meas Mode:  standard Interval:  2.0 s 
+Power Save: disabled Sleep Int: 60 s
+
+Transmitter         Receiver
+ Pulse Len: long     Gain:      high
+ Inlaser:   1935     Bandwidth: narrow
+ Pulse Cnt: 16384    Smpl Rate: 15 MHz
+ Pulse Frq: 10.0 kHz
+
+Window Cnd: 100 %    Outlaser:  517  
+Backg Rad:  25.6                101 %
+
+Tilt Angle: 12.0     Humidity:  N/A    
+
+Temperatures
+ Internal:  48.2     External:  53.4  
+ DC Power:  49.4     Inclinom:  47.6  
+ Laser:     45.9     Blower:    77.2  
+
+Internal heater: off (auto)   
+Blower:          on  (auto)   
+Blower heater:   on  
+Batt Use:        off 
+
+System Status:   OK     
+ Suspect Module: none       
+
+
+CEILO >  get failure history
+
+Alarms      Cnt  First  ON     OFF
+ Tmit Shut  0                        
+ Tmit Fail  0                        
+ Receiver   0                        
+ Voltage    0                        
+ Mem Fail   0                        
+ Light Obst 1    04.48  04.48  04.16 
+ Receiv Sat 0                        
+ Coax Fail  0                        
+ Engine     0                        
+
+Warnings
+ Win Contam 0                        
+ Batt Low   0                        
+ Transm Exp 0                        
+ Humid High 0                        
+ Blower     0                        
+ Humid Sens 0                        
+ Inheater   0                        
+ High Rad   0                        
+ Engine     0                        
+ Batt Fail  0                        
+ Laser Mon  0                        
+ Rec Fail   0                        
+ Tilt Angle 0                        
+
+Time since (y)ears (d)ays h(:)min(.)s
+
+
+CEILO >  get failure status
+
+Alarms
+ Tmit Shutoff OK    Transmitter   OK  
+ Receiver     OK    Voltages      OK  
+ Ext Memory   OK    Light Pth Obs OK  
+ Rec Saturat  OK    Coaxial Cable OK  
+ Engine       OK    
+
+Warnings
+ Window Contam OK    Battery Low  OK  
+ Transm Expire OK    Humid High   OK  
+ Blower        OK    Humid Sensor OK  
+ Int Heater    OK    High Rad     OK  
+ Engine        OK    Battery      OK  
+ Laser Monitor OK    Receiver     OK  
+ Tilt Angle    OK  
+
+System Status:   OK     
+ Suspect Module: none       
+
+
+CEILO >  get params message
+
+Type:         msg1_base
+Port:         data
+Transmission: periodic
+Interval:     15 s
+Transm Delay: N/A 
+Manual Msg:   disabled
+Units:        meters
+Height Offs:  0 m
+Angle Corr:   on
+Sky Cond:     enabled
+
+Profile
+ Scale:       1.00
+ Noise h2:    off
+
+VV Limit
+ Ceiling:     2000 m
+ Reporting:   50 %
+
+
+CEILO >  get params port
+
+Port Settings
+ Maintenance: 9600   bps, 8n1
+ Data:        9600   bps, 8n1, rs-232
+ CTS Control: off
+
+Modem
+ Type:        N/A     
+ Status:      N/A         
+
+UI
+ Port:        maintenance
+ Timeout:     5 min      
+
+Message Port: data       
+
+
+CEILO >  get sensors
+
+Window Cnd: 100 %    Outlaser:  515  
+Backg Rad:  26.2                100 %
+
+Tilt Angle: 11.9     Humidity:  N/A    
+Angle A:    -1.9     Angle B:   -11.7  
+
+
+CEILO >  get voltages
+
+Voltages
+ +12V  11.70       VIN   23.60
+ +13VR 12.96       +5VR  4.87
+ BAT   13.43       +90V  82.39
+ +5VA  4.95        +5V   5.01
+ -5VR  -4.80       -13VR -13.18
+ +2.5V 2.45        +3.3V 3.29
+ RHVD  171.14      PFB   1.52
+ -10V  -9.07       +12VO 11.70
+ +12VF 11.61       +3.3A 3.27
+ +3.3C 3.28
+
+ 5V Isolat - ON    Charger - ON 
+ Over Curr - OFF   Crg Pwr - ON 
+
+
+CEILO >  get voltages
+
+Voltages
+ +12V  11.70       VIN   23.60
+ +13VR 12.96       +5VR  4.87
+ BAT   13.43       +90V  82.39
+ +5VA  4.95        +5V   5.01
+ -5VR  -4.80       -13VR -13.18
+ +2.5V 2.45        +3.3V 3.29
+ RHVD  171.14      PFB   1.52
+ -10V  -9.07       +12VO 11.70
+ +12VF 11.61       +3.3A 3.27
+ +3.3C 3.28
+
+ 5V Isolat - ON    Charger - ON 
+ Over Curr - OFF   Crg Pwr - ON 
+
+
+CEILO >  close

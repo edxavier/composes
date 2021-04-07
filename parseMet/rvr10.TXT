@@ -1,0 +1,95 @@
+system      system 
+FS11 
+ identifier: 1
+ units: 
+  FSC201(<NO SERIAL>) 1.10
+  FSC101(E45301) 1.12
+  LM21(<NO SERIAL>) 1.08
+0> status      status 
+FS11 SYSTEM STATUS: OK
+
+Measurement unit: OK
+Receiver:
+ window cont:      5 backscatter:    2
+ DC saturation:   11 offset:     -0.54
+Transmitter:
+ window cont:      4 backscatter:    0
+ intensity:      101
+Contamination compensation:  ON
+Temperatures (unit C):
+ surface: 31.2 CPU: 29.9 RX: 35.5 TX: 36.3 hood RX: 29.2 hood TX: 28.9
+Voltages:
+ +12V: 11.4 -12V:-11.4 VB: 12.7 VR:  6.7
+Heater status:
+ hood TX:   ON, hood RX:   ON, dew:   ON
+
+Interface unit: OK
+Temperatures (unit C):
+ CPU:  28.6, external: /////
+Humidity: ////
+Voltages:
+ +12V:   12.0 +12Vout:   11.9 PVin:   22.3 V5I:  ON
+Press any key to continue
+
+Background luminance sensor: OK
+ window cont:      3
+ contamination compensation:  ON
+ backscatter:      0
+ CPU: 33.3 hood: 28.6
+ heater status: hood:   ON, dew:   ON
+ V5iso:  ON
+
+
+0> parameters          parameters 
+FS11 parameter values:
+  identifier: 1
+  name:       RVR10
+command terminal:
+  lines:      24
+  timeout:    5
+message:
+  type:       7
+  interval:   15
+  port:       data
+  frame:      on
+  simulation: off
+data port:
+  speed:      9600
+  mode:       rs-485
+  486 delay:  0
+  data format:8n1
+maintenance port:
+  speed:      9600
+system:
+  modem:      off
+  bl sensor:  LM21
+  +12V out:   on
+Press any key to continue
+0> parameters          parameters 
+FS11 parameter values:
+  identifier: 1
+  name:       RVR10
+command terminal:
+  lines:      24
+  timeout:    5
+message:
+  type:       7
+  interval:   15
+  port:       data
+  frame:      on
+  simulation: off
+data port:
+  speed:      9600
+  mode:       rs-485
+  486 delay:  0
+  data format:8n1
+maintenance port:
+  speed:      9600
+system:
+  modem:      off
+  bl sensor:  LM21
+  +12V out:   on
+Press any key to continue
+0> close     close 
+0> 
+FS11 line closed
