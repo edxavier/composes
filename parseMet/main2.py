@@ -4,12 +4,11 @@ from pdfrw import PdfReader
 from pdfrw.buildxobj import pagexobj
 from pdfrw.toreportlab import makerl
 from datetime import datetime
-from ceilo_parse import parse
 
 today = datetime.today().strftime('%F')
 
-outfile = "result.pdf"
-template = PdfReader("ceilo_template.pdf", decompress=False)
+outfile = "print_template.pdf"
+template = PdfReader("parseMet/ceilo_template.pdf", decompress=False)
 canvas = Canvas(outfile, pagesize='A4')
 
 col_star_padding = 140
@@ -24,13 +23,14 @@ pages = [pagexobj(page) for page in pages]
 for page in pages:
     #canvas.setPageSize((page.BBox[2], page.BBox[3]))
     canvas.doForm(makerl(canvas, page))
-    canvas.setFont("Helvetica", 10)
-    data = parse()
+    canvas.setFont("Helvetica", 9)
+    #data = parse()
 
-    canvas.drawString(week1_pad, 680, "ER,EE")
+    """ canvas.drawString(week1_pad, 680, "ER,EE")
     canvas.drawString(week1_pad, 667, today)
     canvas.drawString(week1_pad, 597, data[0])
     canvas.drawString(week1_pad, 583, data[1])
+    """
 
     canvas.showPage()
 

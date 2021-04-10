@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QPushButton, QApplication, QFormLayout, QWidget, QSpinBox, QRadioButton, QLabel, QFileDialog, QDateEdit, QMessageBox, QLineEdit
+from PyQt5.QtWidgets import QPushButton, QApplication, QFormLayout, QWidget, QSpinBox, QRadioButton, QLabel, QFileDialog, QDateEdit, QMessageBox, QLineEdit, QCheckBox
 from meteo_helpers import Generator, WorkerSignals
 from PyQt5.QtCore import QDate, Qt, QObject, QRunnable, QThreadPool, pyqtSignal, pyqtSlot
 import webbrowser
@@ -13,7 +13,9 @@ class Window(QWidget):
         self.windowTitle = "Generador de formatos meteo"
 
         self.name = QLineEdit()
-        self.label = QLabel('Archvo de la cabecera:')
+        self.preview_template = QCheckBox()
+        self.preview_template.setChecked(True)
+        self.label = QLabel('Cabecera:')
         self.date = QDateEdit(self)
         self.date.setCalendarPopup(True)
         d = QDate.currentDate()
@@ -44,6 +46,7 @@ class Window(QWidget):
         layout.addRow(self.label)    
         layout.addRow(self.rbtn1)
         layout.addRow(self.rbtn2)
+        layout.addRow("Mostrar sobre plantilla:",self.preview_template)    
 
         layout.addRow(self.select_btn)
         layout.addRow(self.generate_btn)
@@ -72,6 +75,7 @@ class Window(QWidget):
                     'selected_file': self.selected_file,
                     'selected_folder': folder,
                     'week': int(self.week.value()),
+                    'preview': self.preview_template.isChecked(),
                     'cab': int(self.selected_cab),
                     'name': self.name.text(),
                     'date': (self.date.date().toString(Qt.DefaultLocaleShortDate)),
@@ -92,7 +96,7 @@ class Window(QWidget):
             QMessageBox.information(self, "Finalizado",  mess)
 
     def error(self, error):
-            QMessageBox.warning(self, "Finalizado", "Error generando reporte: " + error)
+        QMessageBox.warning(self, "Finalizado", "Error generando reporte: " + error)
 
 app = QApplication([])
 w = Window()
