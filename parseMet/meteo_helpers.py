@@ -48,8 +48,8 @@ class Generator(QRunnable):
             column_1 = 180
             cab_offset = 77
             column_offset = 145
-            column_2 = column_offset + column_1 # 310
-            column_3 = column_offset + column_2 #450
+            column_2 = (column_offset + column_1)-5 # 310
+            column_3 = (column_offset + column_2)-10 #450
 
             top_l = 679
             l_offset = 14
