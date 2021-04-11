@@ -192,3 +192,84 @@ class Generator(QRunnable):
 
         self.signals.file_saved_as.emit(out_file_name, outfile)
 
+
+
+class Generator2(QRunnable):
+    """
+    Worker thread
+
+    Inherits from QRunnable to handle worker thread setup, signals
+    and wrap-up.
+
+    :param data: The data to add to the PDF for generating.
+    """
+
+    def __init__(self, data):
+        super().__init__()
+        self.data = data
+        self.signals = WorkerSignals()
+
+    @pyqtSlot()
+    def run(self):
+        try:
+            out_file_name = 'rvr_cab' + str(self.data['cab']) + '_semana' + str(self.data['week']) + '.pdf'
+            outfile = self.data.get("selected_folder", "") + '/' +out_file_name
+            #template = PdfReader("parseMet\ceilo_template.pdf", decompress=False)
+            template = PdfReader("parseMet/rvr_template.pdf", decompress=False)
+            canvas = Canvas(outfile, pagesize='A4')
+
+            names = self.data['name']
+            form_date = self.data['date']
+            cab = self.data['cab']
+            week = self.data['week']
+
+            column_1 = 210
+            cab_offset = 72
+            column_offset = 145
+            column_2 = (column_offset + column_1)-5 # 310
+            column_3 = (column_offset + column_2)-10 #450
+
+            #top_l = 650
+            l_offset = 14
+
+            # create page objects
+            pages = template.pages[0: 3]
+            pages = [pagexobj(page) for page in pages]
+            pages_count = 1
+            column = column_1
+            if week == 2:
+                column = column_2
+            elif week == 3:
+                column = column_3
+
+            cab_pos = column
+            if cab == 28:
+                cab_pos = column + cab_offset
+
+            for page in pages:
+                #canvas.setPageSize((page.BBox[2], page.BBox[3]))
+                if self.data['preview']:
+                    canvas.doForm(makerl(canvas, page))
+                canvas.setFont("Helvetica", 9)
+                #data = parse()
+                top_l = 660
+                canvas.drawString(column, top_l, names)
+                top_l = 648
+                canvas.drawString(column, top_l, form_date)
+                top_l -= (l_offset * 4)
+                canvas.drawString(cab_pos, top_l, "OK")
+                top_l -= (l_offset * 2)
+                canvas.drawString(cab_pos, top_l, "OK")
+    
+                canvas.showPage()
+                pages_count += 1
+
+            canvas.save()
+    
+        except Exception as e:
+            print(traceback.format_exc())
+            self.signals.error.emit(str(e))
+            return
+
+        self.signals.file_saved_as.emit(out_file_name, outfile)
+
