@@ -1,12 +1,14 @@
 
-from PyQt5.QtCore import QObject, QRunnable, QThreadPool, pyqtSignal, pyqtSlot
+from PyQt5.QtCore import QObject, QRunnable, pyqtSignal, pyqtSlot
 from reportlab.pdfgen.canvas import Canvas
 
 from pdfrw import PdfReader
 from pdfrw.buildxobj import pagexobj
 from pdfrw.toreportlab import makerl
 from ceilo_parse import parsePage1, parsePage2, parsePage3, parsePage4
+from rvr_parser import RVR
 import traceback
+
 
 class WorkerSignals(QObject):
     """
@@ -68,6 +70,7 @@ class Generator(QRunnable):
             if cab == 28:
                 cab_pos = column + cab_offset
 
+    
             for page in pages:
                 #canvas.setPageSize((page.BBox[2], page.BBox[3]))
                 if self.data['preview']:
@@ -212,7 +215,7 @@ class Generator2(QRunnable):
     @pyqtSlot()
     def run(self):
         try:
-            out_file_name = 'rvr_cab' + str(self.data['cab']) + '_semana' + str(self.data['week']) + '.pdf'
+            out_file_name = 'rvr_cab' + str(self.data['cab']) + '.pdf'
             outfile = self.data.get("selected_folder", "") + '/' +out_file_name
             #template = PdfReader("parseMet\ceilo_template.pdf", decompress=False)
             template = PdfReader("parseMet/rvr_template.pdf", decompress=False)
@@ -224,7 +227,7 @@ class Generator2(QRunnable):
             week = self.data['week']
 
             column_1 = 210
-            cab_offset = 72
+            cab_offset = 68
             column_offset = 145
             column_2 = (column_offset + column_1)-5 # 310
             column_3 = (column_offset + column_2)-10 #450
@@ -246,6 +249,7 @@ class Generator2(QRunnable):
             if cab == 28:
                 cab_pos = column + cab_offset
 
+            rvr = RVR(self.data['selected_file'])
             for page in pages:
                 #canvas.setPageSize((page.BBox[2], page.BBox[3]))
                 if self.data['preview']:
@@ -257,10 +261,68 @@ class Generator2(QRunnable):
                 top_l = 648
                 canvas.drawString(column, top_l, form_date)
                 top_l -= (l_offset * 4)
-                canvas.drawString(cab_pos, top_l, "OK")
-                top_l -= (l_offset * 2)
-                canvas.drawString(cab_pos, top_l, "OK")
-    
+
+                if pages_count == 1:
+                    res = rvr.parsePage1()
+                    canvas.drawString(cab_pos, top_l, res[0])
+                    top_l -= (l_offset * 2)
+                    canvas.drawString(cab_pos, top_l, res[1])
+                    top_l -= (l_offset * 2) + 4
+                    for i in range(2,6):
+                        canvas.drawString(cab_pos, top_l, res[i])
+                        top_l -= l_offset
+                    top_l -= (l_offset+3)
+                    for i in range(6,10):
+                        canvas.drawString(cab_pos, top_l, res[i])
+                        top_l -= l_offset
+                    top_l -= (l_offset * 2) - 2
+                    for i in range(10,16):
+                        canvas.drawString(cab_pos, top_l, res[i])
+                        top_l -= l_offset
+                    top_l -= l_offset
+                    for i in range(16,20):
+                        canvas.drawString(cab_pos, top_l, res[i])
+                        top_l -= l_offset + 1
+                    top_l -= l_offset
+                    for i in range(20,23):
+                        canvas.drawString(cab_pos, top_l, res[i])
+                        top_l -= l_offset +1
+                    top_l -= l_offset + 1
+                    canvas.drawString(cab_pos, top_l, res[23])
+                    top_l -= (l_offset *2) + 1
+                    canvas.drawString(cab_pos, top_l, res[24])
+                    
+                if pages_count == 2:
+                    res = rvr.parsePage2()
+                    top_l+=2
+                    for i in range(0,4):
+                        canvas.drawString(cab_pos, top_l, res[i])
+                        top_l -= l_offset
+                    top_l -= l_offset
+                    for i in range(4,10):
+                        canvas.drawString(cab_pos, top_l, res[i])
+                        top_l -= l_offset
+                        if i == 4:
+                            top_l-=2
+                        if i == 5:
+                            top_l-=2
+                        if i == 6:
+                            top_l-=9
+                    top_l -= l_offset 
+                    for i in range(10,13):
+                        canvas.drawString(cab_pos, top_l, res[i])
+                        top_l -= l_offset
+                    top_l -= l_offset 
+                    for i in range(13,32):
+                        canvas.drawString(cab_pos, top_l, res[i])
+                        if i >=15:
+                            top_l -= l_offset + 1
+                        else:
+                            top_l -= l_offset 
+                        if i == 25:
+                            top_l -= + 2
+                        if i == 30:
+                            top_l -= + 9
                 canvas.showPage()
                 pages_count += 1
 

@@ -1,0 +1,99 @@
+status      status 
+FS11P SYSTEM STATUS: OK
+
+Measurement unit: OK
+Receiver:
+ window cont:      6 backscatter:    0
+ DC saturation:   19 offset:     -0.53
+Transmitter:
+ window cont:     11 backscatter:   13
+ intensity:      120
+Contamination compensation:  ON
+Temperatures (unit C):
+ surface: 30.8 CPU: 33.2 RX: 34.8 TX: 37.0 hood RX: 30.9 hood TX: 30.2
+Voltages:
+ +12V: 11.4 -12V:-11.4 VB: 12.9 VR:  6.8
+Heater status:
+ hood TX:   ON, hood RX:   ON, dew:   ON
+
+Interface unit: OK
+Temperatures (unit C):
+ CPU:  36.7, external: /////
+Humidity: ////
+Voltages:
+ +12V:   12.1 +12Vout:    0.0 PVin:   23.8 V5I:  ON
+Press any key to continue
+
+Background luminance sensor: OK
+ window cont:      8
+ contamination compensation:  ON
+ backscatter:      0
+ CPU: 37.5 hood: 32.5
+ heater status: hood:   ON, dew:  *ON
+ V5iso:  ON
+
+PWD STATUS
+VAISALA PWD32 V 2.07   2013-06-04 SN:J3510003 ID STRING: 0
+
+SIGNAL      0.18 OFFSET    146.61 DRIFT     -0.19
+REC. BACKSCATTER      610  CHANGE    253
+TR. BACKSCATTER      -0.6  CHANGE    0.0
+LEDI    2.8  AMBL    -3.5
+VBB    12.6  P12     11.3  M12     -11.2
+TS     31.4  FS TS   30.9
+ TB        34
+TDRD     26    24  DRD      724  740  DRY     735.0
+HOOD HEATERS OFF
+HARDWARE :
+ OK
+Press any key to continue
+
+
+
+0> system      system 
+FS11P
+ identifier: 1
+ PW OPTION: 
+  Enabled (Serial <J3510003>  Key <RIVKPAPG>)
+ units: 
+  FSI(J3510003) FS11P 2.26.17.99
+  FSM(J3510003) FSM102  2.32.4.47
+  LM(<NO SERIAL>) LM21  2.20.9.34
+  PWD     VAISALA PWD32 V 2.07   2013-06-04 SN:J3510003 ID STRING: 0
+0> parameters          parameters 
+FS11P parameter values:
+  identifier: 1
+  name:       
+command terminal:
+  lines:      24
+  timeout:    10
+message:
+  type:       7
+  interval:   15
+  port:       data
+  frame:      on
+  simulation: off
+  2nd port:   none
+  2nd type:   0
+  ACK/NAK:    off
+data port:
+  speed:      9600
+  data format:8n1
+  mode:       rs-485
+  RS delay:   0
+maintenance port:
+  speed:      9600
+  data format:8n1
+Press any key to continue
+system:
+  modem:      off
+  bl sensor:  LM21
+  vis sensor: on
+  PWD:        on
+  +12V out:   off
+  PW option:  enabled
+
+
+0> close     close 
+0> 
+FS11P-1 line closed

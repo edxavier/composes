@@ -1,5 +1,4 @@
-import os
-import subprocess
+from file_reader import find_line, find_lines
 
 def clear_special_chars(text):
     text = text.rstrip()
@@ -7,27 +6,6 @@ def clear_special_chars(text):
     text = text.rstrip('\n').rstrip('\r').strip()
     return text
 
-def find_line(file_path, search_text):
-    file1 = open(file_path, 'r')
-    lines = file1.readlines()
-    for line in lines:
-        line = line.strip()
-        line = " ".join(line.split())
-        if line != '':
-            if line.startswith(search_text):
-                return line.split() 
-
-def find_lines(file_path, search_text):
-    file1 = open(file_path, 'r')
-    lines = file1.readlines()
-    results = []
-    for line in lines:
-        line = line.strip()
-        line = " ".join(line.split())
-        if line != '':
-            if line.startswith(search_text):
-                results.append(line.split()) 
-    return results
 
 def parsePage1(file_path):
     alarms = []
