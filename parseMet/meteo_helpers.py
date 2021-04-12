@@ -247,7 +247,10 @@ class Generator2(QRunnable):
 
             cab_pos = column
             if cab == 28:
-                cab_pos = column + cab_offset
+                if week > 1:
+                    cab_pos = (column + cab_offset) - 10
+                else:
+                    cab_pos = column + cab_offset
 
             rvr = RVR(self.data['selected_file'])
             for page in pages:
@@ -323,6 +326,17 @@ class Generator2(QRunnable):
                             top_l -= + 2
                         if i == 30:
                             top_l -= + 9
+
+                if pages_count == 3:
+                    res = rvr.parsePage3()
+                    top_l+=l_offset
+                    for i in range(0,6):
+                        canvas.drawString(cab_pos, top_l, res[i])
+                        top_l -= l_offset
+                    top_l -= l_offset
+                    for i in range(6,10):
+                        canvas.drawString(cab_pos, top_l, res[i])
+                        top_l -= l_offset + 1
                 canvas.showPage()
                 pages_count += 1
 

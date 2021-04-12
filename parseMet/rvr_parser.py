@@ -145,3 +145,51 @@ class RVR(object):
 
 
 
+
+    def parsePage3(self):
+        alarms = []
+        line = find_line(self.file, "TB")
+        if line:
+            alarms.append(line[1])
+        else:
+            alarms.append('')
+        line = find_line(self.file, "TDRD")
+        if line:
+            alarms.append(f"{line[1]} {line[2]}")
+            alarms.append(f"{line[4]} {line[5]}")
+            alarms.append(line[7])
+        else:
+            alarms.append('')
+            alarms.append('')
+            alarms.append('')
+        
+        line = find_line(self.file, "HOOD HEATERS")
+        if line:
+            alarms.append(line[2])
+        else:
+            alarms.append('')
+        
+        alarms.append('')
+
+        line = find_line(self.file, "vis sensor")
+        if line:
+            alarms.append(line[2])
+        else:
+            alarms.append('')
+        line = find_line(self.file, "PWD:")
+        if line:
+            alarms.append(line[1])
+        else:
+            alarms.append('')
+        line = find_line(self.file, "+12V out:")
+        if line:
+            alarms.append(line[2])
+        else:
+            alarms.append('')
+        line = find_line(self.file, "PW option:")
+        if line:
+            alarms.append(line[2])
+        else:
+            alarms.append('---')
+        return alarms
+

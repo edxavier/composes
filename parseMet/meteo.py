@@ -1,4 +1,3 @@
-#/usr/bin/python
 from PyQt5.QtWidgets import QPushButton, QApplication, QFormLayout, QWidget, QSpinBox, QRadioButton, QLabel, QFileDialog, QDateEdit, QMessageBox, QLineEdit, QCheckBox, QGroupBox, QVBoxLayout
 from meteo_helpers import Generator, Generator2
 from PyQt5.QtCore import QDate, Qt,  QThreadPool
